@@ -1,3 +1,3 @@
-import RNMap from "./components/RNMap";
+import Map from "./components/Map";
 
-export { RNMap };
+export { Map };

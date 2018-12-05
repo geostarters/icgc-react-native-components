@@ -14,20 +14,20 @@ import PropTypes from "prop-types";
 import * as CONSTANTS from "../../constants";
 import sheet from './styles/sheet';
 
-var RNMap = function (_React$Component) {
-	_inherits(RNMap, _React$Component);
+var Map = function (_React$Component) {
+	_inherits(Map, _React$Component);
 
-	function RNMap(props) {
-		_classCallCheck(this, RNMap);
+	function Map(props) {
+		_classCallCheck(this, Map);
 
-		var _this = _possibleConstructorReturn(this, (RNMap.__proto__ || Object.getPrototypeOf(RNMap)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this, props));
 
 		MapboxGL.setAccessToken(_this.props.mapboxToken || '');
 
 		return _this;
 	}
 
-	_createClass(RNMap, [{
+	_createClass(Map, [{
 		key: 'getObjectLayerType',
 		value: function getObjectLayerType(layerType, props) {
 
@@ -188,10 +188,10 @@ var RNMap = function (_React$Component) {
 		}
 	}]);
 
-	return RNMap;
+	return Map;
 }(React.Component);
 
-export default RNMap;
+export default Map;
 
 
 Map.propTypes = {

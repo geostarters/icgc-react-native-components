@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import * as CONSTANTS from "../../constants";
 import sheet from './styles/sheet';
 
-export default class RNMap extends React.Component {
+export default class Map extends React.Component {
 
 	constructor(props) {
 
