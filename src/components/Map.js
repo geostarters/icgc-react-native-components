@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import PropTypes from "prop-types";
 
-import * as CONSTANTS from "../../constants";
+import * as CONSTANTS from "../constants";
 import sheet from './styles/sheet';
 
 export default class Map extends React.Component {
