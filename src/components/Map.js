@@ -161,7 +161,7 @@ export default class Map extends React.Component {
 			ref={(ref) => (this.map = ref)}
 			style={sheet.matchParent}>			
 				
-				{ this.renderMapData(this.props.mapData) }
+				{ this.props.mapData && this.renderMapData(this.props.mapData) }
 		  
 		</MapboxGL.MapView>);
 
@@ -171,9 +171,9 @@ export default class Map extends React.Component {
 
 
 Map.propTypes = {
-	options: PropTypes.object,//Has to be MapView options, defined in Mapbox RN docs: https://github.com/mapbox/react-native-mapbox-gl/blob/master/docs/MapView.md
+	options: PropTypes.object, //Has to be MapView options, defined in Mapbox RN docs: https://github.com/mapbox/react-native-mapbox-gl/blob/master/docs/MapView.md
 	mapboxToken: PropTypes.string,
 	mapData: PropTypes.object,
 	showAttribution: PropTypes.bool,
-	layerEvents: PropTypes.array 			//Has to be Array<EventData> from flow-typed
+	layerEvents: PropTypes.array //Has to be Array<EventData> from flow-typed
 };

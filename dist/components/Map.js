@@ -183,7 +183,7 @@ var Map = function (_React$Component) {
 						return _this4.map = _ref;
 					},
 					style: sheet.matchParent }),
-				this.renderMapData(this.props.mapData)
+				this.props.mapData && this.renderMapData(this.props.mapData)
 			);
 		}
 	}]);
