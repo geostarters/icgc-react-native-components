@@ -7,13 +7,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 import React from "react";
-import { StyleSheet } from 'react-native';
-import MapboxGL from '@mapbox/react-native-mapbox-gl';
-import { StyleURL } from 'icgc-js-common';
+import MapboxGL from "@mapbox/react-native-mapbox-gl";
+import { StyleURL } from "icgc-js-common";
 import PropTypes from "prop-types";
 
 import * as CONSTANTS from "../constants";
-import sheet from './styles/sheet';
+import sheet from "./styles/sheet";
 
 var Map = function (_React$Component) {
 	_inherits(Map, _React$Component);
@@ -23,13 +22,13 @@ var Map = function (_React$Component) {
 
 		var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this, props));
 
-		MapboxGL.setAccessToken(_this.props.mapboxToken || '');
+		MapboxGL.setAccessToken(_this.props.mapboxToken || "");
 
 		return _this;
 	}
 
 	_createClass(Map, [{
-		key: 'getObjectLayerType',
+		key: "getObjectLayerType",
 		value: function getObjectLayerType(layerType, props) {
 
 			var res = void 0;
@@ -66,12 +65,13 @@ var Map = function (_React$Component) {
 
 				default:
 					res = React.createElement(MapboxGL.BackgroundLayer, props);
+
 			}
 
 			return res;
 		}
 	}, {
-		key: 'createRNLayers',
+		key: "createRNLayers",
 		value: function createRNLayers(layers) {
 			var _this2 = this;
 
@@ -94,8 +94,10 @@ var Map = function (_React$Component) {
 			});
 		}
 	}, {
-		key: 'getObjectSourceType',
-		value: function getObjectSourceType(source, layes, index) {
+		key: "getObjectSourceType",
+		value: function getObjectSourceType(source, layers, index) {
+
+			var res = void 0;
 
 			switch (source.type) {
 
@@ -108,58 +110,62 @@ var Map = function (_React$Component) {
 					break;
 
 				case CONSTANTS.SOURCE_TYPE_RASTER:
-					var rasterProps = {
-						id: index,
-						url: source.url,
-						minZoomLevel: source.minzoom,
-						maxZoomLevel: source.maxzoom,
-						tileSize: source.tileSize,
-						tms: source.scheme === CONSTANTS.SCHEME_TMS
-						//attribution: this.props.showAttribution
-					};
-					res = React.createElement(
-						MapboxGL.RasterSource,
-						rasterProps,
-						layers
-					);
-					break;
+					{
 
+						var rasterProps = {
+							id: index,
+							url: source.url,
+							minZoomLevel: source.minzoom,
+							maxZoomLevel: source.maxzoom,
+							tileSize: source.tileSize,
+							tms: source.scheme === CONSTANTS.SCHEME_TMS
+							//attribution: this.props.showAttribution
+						};
+						res = React.createElement(
+							MapboxGL.RasterSource,
+							rasterProps,
+							layers
+						);
+						break;
+					}
 				case CONSTANTS.SOURCE_TYPE_GEOJSON:
-					var geojsonProps = {
-						id: index,
-						url: source.data,
-						shape: source.data,
-						cluster: source.cluster,
-						clusterRadius: source.clusterRadius,
-						clusterMaxZoomLevel: source.clusterMaxZoom,
-						maxZoomLevel: source.maxzoom,
-						buffer: source.buffer,
-						tolerance: source.tolerance
-					};
-					res = React.createElement(
-						MapboxGL.ShapeSource,
-						geojsonProps,
-						layers
-					);
-					break;
+					{
 
+						var geojsonProps = {
+							id: index,
+							url: source.data,
+							shape: source.data,
+							cluster: source.cluster,
+							clusterRadius: source.clusterRadius,
+							clusterMaxZoomLevel: source.clusterMaxZoom,
+							maxZoomLevel: source.maxzoom,
+							buffer: source.buffer,
+							tolerance: source.tolerance
+						};
+						res = React.createElement(
+							MapboxGL.ShapeSource,
+							geojsonProps,
+							layers
+						);
+						break;
+					}
 				default:
 					res = React.createElement(
 						MapboxGL.VectorSource,
 						{ id: index, url: source.url },
 						layers
 					);
+
 			}
 
 			return res;
 		}
 	}, {
-		key: 'renderMapData',
+		key: "renderMapData",
 		value: function renderMapData(mapData) {
 			var _this3 = this;
 
 			var renderSources = [];
-			var id = 0;
 
 			var RNLayers = this.createRNLayers(mapData.layers);
 
@@ -169,7 +175,7 @@ var Map = function (_React$Component) {
 			});
 		}
 	}, {
-		key: 'render',
+		key: "render",
 		value: function render() {
 			var _this4 = this;
 
