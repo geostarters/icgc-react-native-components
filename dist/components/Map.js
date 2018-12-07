@@ -9,6 +9,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import React from "react";
 import { StyleSheet } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
+import { StyleURL } from 'icgc-js-common';
 import PropTypes from "prop-types";
 
 import * as CONSTANTS from "../constants";
@@ -193,6 +194,10 @@ var Map = function (_React$Component) {
 
 export default Map;
 
+
+Map.StyleURL = Object.assign({
+	MapboxLight: MapboxGL.StyleURL.Light
+}, StyleURL);
 
 Map.propTypes = {
 	options: PropTypes.object, //Has to be MapView options, defined in Mapbox RN docs: https://github.com/mapbox/react-native-mapbox-gl/blob/master/docs/MapView.md

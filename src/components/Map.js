@@ -3,6 +3,7 @@
 import React from "react";
 import { StyleSheet } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
+import { StyleURL } from 'icgc-js-common';
 import PropTypes from "prop-types";
 
 import * as CONSTANTS from "../constants";
@@ -169,6 +170,10 @@ export default class Map extends React.Component {
 
 }
 
+Map.StyleURL = {
+	MapboxLight: MapboxGL.StyleURL.Light,
+	...StyleURL
+}
 
 Map.propTypes = {
 	options: PropTypes.object, //Has to be MapView options, defined in Mapbox RN docs: https://github.com/mapbox/react-native-mapbox-gl/blob/master/docs/MapView.md
