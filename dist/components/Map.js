@@ -199,6 +199,8 @@ Map.StyleURL = Object.assign({
 	MapboxLight: MapboxGL.StyleURL.Light
 }, StyleURL);
 
+Map.UserTrackingModes = Object.assign({}, MapboxGL.UserTrackingModes);
+
 Map.propTypes = {
 	options: PropTypes.object, //Has to be MapView options, defined in Mapbox RN docs: https://github.com/mapbox/react-native-mapbox-gl/blob/master/docs/MapView.md
 	mapboxToken: PropTypes.string,
