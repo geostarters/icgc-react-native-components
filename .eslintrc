@@ -1,6 +1,7 @@
 {
   "extends": [
-    "geostart"
+    "geostart",
+	"plugin:react/recommended"
   ],
   "plugins": [
 	  "flowtype"
