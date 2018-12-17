@@ -24,7 +24,7 @@
     "build": "run-s lint copy"
   },
   "dependencies": {
-    "@mapbox/react-native-mapbox-gl": "^6.1.3",
+    "@mapbox/react-native-mapbox-gl": "^6.1.1",
     "babel-cli": "^6.26.0",
     "icgc-js-common": "git+https://github.com/geostarters/icgc-js-common.git"
   }

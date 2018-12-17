@@ -175,6 +175,15 @@ var Map = function (_React$Component) {
 			});
 		}
 	}, {
+		key: "onRegionDidChange",
+		value: function onRegionDidChange(view) {
+
+			if (this.props.onRegionDidChange) {
+
+				this.props.onRegionDidChange(view);
+			}
+		}
+	}, {
 		key: "render",
 		value: function render() {
 			var _this4 = this;
@@ -189,7 +198,11 @@ var Map = function (_React$Component) {
 					ref: function ref(_ref) {
 						return _this4.map = _ref;
 					},
-					style: sheet.matchParent }),
+					style: sheet.matchParent,
+					onRegionDidChange: function onRegionDidChange(view) {
+						return _this4.onRegionDidChange(view);
+					}
+				}),
 				this.props.mapData && this.renderMapData(this.props.mapData)
 			);
 		}
@@ -213,5 +226,6 @@ Map.propTypes = {
 	mapboxToken: PropTypes.string,
 	mapData: PropTypes.object,
 	showAttribution: PropTypes.bool,
-	layerEvents: PropTypes.array //Has to be Array<EventData> from flow-typed
+	layerEvents: PropTypes.array, //Has to be Array<EventData> from flow-typed
+	onRegionDidChange: PropTypes.func
 };
