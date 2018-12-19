@@ -185,6 +185,18 @@ var Map = function (_React$Component) {
 			}
 		}
 	}, {
+		key: "getVisibleBoundsInViewCoordinates",
+		value: function getVisibleBoundsInViewCoordinates() {
+
+			var bounds = this.map.getVisibleBounds();
+			var viewCoords = [this.getLngLatInViewCoordinates(bounds[0]), this.getLngLatInViewCoordinates(bounds[1])];
+			var maxX = Math.max(viewCoords[0][0], viewCoords[1][0]);
+			var minX = Math.min(viewCoords[0][0], viewCoords[1][0]);
+			var maxY = Math.max(viewCoords[0][1], viewCoords[1][1]);
+			var minY = Math.min(viewCoords[0][1], viewCoords[1][1]);
+			return [maxY, maxX, minY, minX];
+		}
+	}, {
 		key: "getVisibleBounds",
 		value: function getVisibleBounds() {
 
@@ -195,6 +207,12 @@ var Map = function (_React$Component) {
 		value: function queryRenderedFeaturesInRect(bbox, filter, layerIDs) {
 
 			return this.map.queryRenderedFeaturesInRect(bbox, filter, layerIDs);
+		}
+	}, {
+		key: "getLngLatInViewCoordinates",
+		value: function getLngLatInViewCoordinates(point) {
+
+			return this.map.getPointInView(point);
 		}
 	}, {
 		key: "render",
