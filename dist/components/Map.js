@@ -178,6 +178,7 @@ var Map = function (_React$Component) {
 		key: "onRegionDidChange",
 		value: function onRegionDidChange(view) {
 
+			console.log("Map::onRegionDidChange");
 			if (this.props.onRegionDidChange) {
 
 				this.props.onRegionDidChange(view);
@@ -196,7 +197,7 @@ var Map = function (_React$Component) {
 				MapboxGL.MapView,
 				Object.assign({}, mapOptions, {
 					ref: function ref(_ref) {
-						return _this4.map = _ref;
+						return _this4.props.setMapReference(_ref);
 					},
 					style: sheet.matchParent,
 					onRegionDidChange: function onRegionDidChange(view) {
@@ -227,5 +228,6 @@ Map.propTypes = {
 	mapData: PropTypes.object,
 	showAttribution: PropTypes.bool,
 	layerEvents: PropTypes.array, //Has to be Array<EventData> from flow-typed
-	onRegionDidChange: PropTypes.func
+	onRegionDidChange: PropTypes.func,
+	setMapReference: PropTypes.func
 };
