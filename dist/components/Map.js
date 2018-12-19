@@ -1,4 +1,8 @@
+import _regeneratorRuntime from "babel-runtime/regenerator";
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -185,16 +189,79 @@ var Map = function (_React$Component) {
 			}
 		}
 	}, {
-		key: "getVisibleBounds",
-		value: function getVisibleBounds() {
+		key: "getVisibleBoundsInViewCoordinates",
+		value: function () {
+			var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+				var bounds, viewCoords, maxX, minX, maxY, minY;
+				return _regeneratorRuntime.wrap(function _callee$(_context) {
+					while (1) {
+						switch (_context.prev = _context.next) {
+							case 0:
+								_context.next = 2;
+								return this.map.getVisibleBounds();
 
-			return this.map.getVisibleBounds();
-		}
+							case 2:
+								bounds = _context.sent;
+								viewCoords = [this.getLngLatInViewCoordinates(bounds[0]), this.getLngLatInViewCoordinates(bounds[1])];
+								maxX = Math.max(viewCoords[0][0], viewCoords[1][0]);
+								minX = Math.min(viewCoords[0][0], viewCoords[1][0]);
+								maxY = Math.max(viewCoords[0][1], viewCoords[1][1]);
+								minY = Math.min(viewCoords[0][1], viewCoords[1][1]);
+								return _context.abrupt("return", [maxY, maxX, minY, minX]);
+
+							case 9:
+							case "end":
+								return _context.stop();
+						}
+					}
+				}, _callee, this);
+			}));
+
+			function getVisibleBoundsInViewCoordinates() {
+				return _ref.apply(this, arguments);
+			}
+
+			return getVisibleBoundsInViewCoordinates;
+		}()
+	}, {
+		key: "getVisibleBounds",
+		value: function () {
+			var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+				return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+					while (1) {
+						switch (_context2.prev = _context2.next) {
+							case 0:
+								_context2.next = 2;
+								return this.map.getVisibleBounds();
+
+							case 2:
+								return _context2.abrupt("return", _context2.sent);
+
+							case 3:
+							case "end":
+								return _context2.stop();
+						}
+					}
+				}, _callee2, this);
+			}));
+
+			function getVisibleBounds() {
+				return _ref2.apply(this, arguments);
+			}
+
+			return getVisibleBounds;
+		}()
 	}, {
 		key: "queryRenderedFeaturesInRect",
 		value: function queryRenderedFeaturesInRect(bbox, filter, layerIDs) {
 
 			return this.map.queryRenderedFeaturesInRect(bbox, filter, layerIDs);
+		}
+	}, {
+		key: "getLngLatInViewCoordinates",
+		value: function getLngLatInViewCoordinates(point) {
+
+			return this.map.getPointInView(point);
 		}
 	}, {
 		key: "render",
@@ -208,9 +275,9 @@ var Map = function (_React$Component) {
 			return React.createElement(
 				MapboxGL.MapView,
 				Object.assign({}, mapOptions, {
-					ref: function ref(_ref) {
+					ref: function ref(_ref3) {
 
-						_this4.map = _ref;
+						_this4.map = _ref3;
 					},
 					style: sheet.matchParent,
 					onRegionDidChange: function onRegionDidChange(view) {

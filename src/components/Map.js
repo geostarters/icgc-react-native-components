@@ -166,15 +166,36 @@ export default class Map extends React.Component {
 
 	}
 
-	getVisibleBounds() {
+	async getVisibleBoundsInViewCoordinates() {
 
-		return this.map.getVisibleBounds();
+		const bounds = await this.map.getVisibleBounds();
+		const viewCoords = [
+			this.getLngLatInViewCoordinates(bounds[0]),
+			this.getLngLatInViewCoordinates(bounds[1])
+		];
+		const maxX = Math.max(viewCoords[0][0], viewCoords[1][0]);
+		const minX = Math.min(viewCoords[0][0], viewCoords[1][0]);
+		const maxY = Math.max(viewCoords[0][1], viewCoords[1][1]);
+		const minY = Math.min(viewCoords[0][1], viewCoords[1][1]);
+		return [maxY, maxX, minY, minX];
+
+	}
+
+	async getVisibleBounds() {
+
+		return await this.map.getVisibleBounds();
 
 	}
 
 	queryRenderedFeaturesInRect(bbox, filter, layerIDs) {
 
 		return this.map.queryRenderedFeaturesInRect(bbox, filter, layerIDs);
+
+	}
+
+	getLngLatInViewCoordinates(point) {
+
+		return this.map.getPointInView(point);
 
 	}
 
