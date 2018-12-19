@@ -157,6 +157,7 @@ export default class Map extends React.Component {
 
 	onRegionDidChange(view) {
 
+		console.log("Map::onRegionDidChange");
 		if (this.props.onRegionDidChange) {
 
 			this.props.onRegionDidChange(view);
@@ -175,7 +176,7 @@ export default class Map extends React.Component {
 		return (
 			<MapboxGL.MapView
 				{...mapOptions}
-				ref={(ref) => (this.map = ref)}
+				ref={(ref) => (this.props.mapReference = ref)}
 				style={sheet.matchParent}
 				onRegionDidChange={(view) => this.onRegionDidChange(view)}
 			>
@@ -202,5 +203,6 @@ Map.propTypes = {
 	mapData: PropTypes.object,
 	showAttribution: PropTypes.bool,
 	layerEvents: PropTypes.array, //Has to be Array<EventData> from flow-typed
-	onRegionDidChange: PropTypes.func
+	onRegionDidChange: PropTypes.func,
+	mapReference: PropTypes.object	//Where the reference to the map object will be stored
 };
