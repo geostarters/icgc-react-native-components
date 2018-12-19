@@ -185,6 +185,18 @@ var Map = function (_React$Component) {
 			}
 		}
 	}, {
+		key: "getVisibleBounds",
+		value: function getVisibleBounds() {
+
+			return this.map.getVisibleBounds();
+		}
+	}, {
+		key: "queryRenderedFeaturesInRect",
+		value: function queryRenderedFeaturesInRect(bbox, filter, layerIDs) {
+
+			return this.map.queryRenderedFeaturesInRect(bbox, filter, layerIDs);
+		}
+	}, {
 		key: "render",
 		value: function render() {
 			var _this4 = this;
@@ -197,7 +209,8 @@ var Map = function (_React$Component) {
 				MapboxGL.MapView,
 				Object.assign({}, mapOptions, {
 					ref: function ref(_ref) {
-						return _this4.props.setMapReference(_ref);
+
+						_this4.map = _ref;
 					},
 					style: sheet.matchParent,
 					onRegionDidChange: function onRegionDidChange(view) {
@@ -228,6 +241,5 @@ Map.propTypes = {
 	mapData: PropTypes.object,
 	showAttribution: PropTypes.bool,
 	layerEvents: PropTypes.array, //Has to be Array<EventData> from flow-typed
-	onRegionDidChange: PropTypes.func,
-	setMapReference: PropTypes.func
+	onRegionDidChange: PropTypes.func
 };

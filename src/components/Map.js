@@ -166,6 +166,18 @@ export default class Map extends React.Component {
 
 	}
 
+	getVisibleBounds() {
+
+		return this.map.getVisibleBounds();
+
+	}
+
+	queryRenderedFeaturesInRect(bbox, filter, layerIDs) {
+
+		return this.map.queryRenderedFeaturesInRect(bbox, filter, layerIDs);
+
+	}
+
 	render() {
 
 		const mapOptions = {
@@ -176,7 +188,11 @@ export default class Map extends React.Component {
 		return (
 			<MapboxGL.MapView
 				{...mapOptions}
-				ref={(ref) => (this.props.setMapReference(ref))}
+				ref={(ref) => {
+
+					this.map = ref;
+
+				}}
 				style={sheet.matchParent}
 				onRegionDidChange={(view) => this.onRegionDidChange(view)}
 			>
@@ -203,6 +219,5 @@ Map.propTypes = {
 	mapData: PropTypes.object,
 	showAttribution: PropTypes.bool,
 	layerEvents: PropTypes.array, //Has to be Array<EventData> from flow-typed
-	onRegionDidChange: PropTypes.func,
-	setMapReference: PropTypes.func
+	onRegionDidChange: PropTypes.func
 };
