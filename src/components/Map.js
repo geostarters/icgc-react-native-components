@@ -193,9 +193,7 @@ export default class Map extends React.Component {
 
 	async getVisibleBounds() {
 
-		const bounds = await this.map.getVisibleBounds();
-		console.log("Map::GetVisibleBounds", bounds);
-		return bounds;
+		return await this.map.getVisibleBounds();
 
 	}
 
@@ -244,7 +242,10 @@ Map.StyleURL = {
 	...StyleURL
 };
 
+// UserTrackingModes as found in https://github.com/mapbox/react-native-mapbox-gl/blob/master/android/rctmgl/src/main/java/com/mapbox/rctmgl/location/UserTrackingMode.java
 Map.UserTrackingModes = { ...MapboxGL.UserTrackingModes };
+// UserLocationVerticalAlignment mode as found in https://github.com/mapbox/react-native-mapbox-gl/blob/master/android/rctmgl/src/main/java/com/mapbox/rctmgl/location/UserLocationVerticalAlignment.java
+Map.UserLocationVerticalAlignment = { ...MapboxGL.UserLocationVerticalAlignment };
 Map.requestAndroidLocationPermissions = MapboxGL.requestAndroidLocationPermissions;
 
 Map.propTypes = {

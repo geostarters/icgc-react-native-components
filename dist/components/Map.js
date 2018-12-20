@@ -247,7 +247,6 @@ var Map = function (_React$Component) {
 		key: "getVisibleBounds",
 		value: function () {
 			var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
-				var bounds;
 				return _regeneratorRuntime.wrap(function _callee2$(_context2) {
 					while (1) {
 						switch (_context2.prev = _context2.next) {
@@ -256,12 +255,9 @@ var Map = function (_React$Component) {
 								return this.map.getVisibleBounds();
 
 							case 2:
-								bounds = _context2.sent;
+								return _context2.abrupt("return", _context2.sent);
 
-								console.log("Map::GetVisibleBounds", bounds);
-								return _context2.abrupt("return", bounds);
-
-							case 5:
+							case 3:
 							case "end":
 								return _context2.stop();
 						}
@@ -370,7 +366,10 @@ Map.StyleURL = Object.assign({
 	MapboxLight: MapboxGL.StyleURL.Light
 }, StyleURL);
 
+// UserTrackingModes as found in https://github.com/mapbox/react-native-mapbox-gl/blob/master/android/rctmgl/src/main/java/com/mapbox/rctmgl/location/UserTrackingMode.java
 Map.UserTrackingModes = Object.assign({}, MapboxGL.UserTrackingModes);
+// UserLocationVerticalAlignment mode as found in https://github.com/mapbox/react-native-mapbox-gl/blob/master/android/rctmgl/src/main/java/com/mapbox/rctmgl/location/UserLocationVerticalAlignment.java
+Map.UserLocationVerticalAlignment = Object.assign({}, MapboxGL.UserLocationVerticalAlignment);
 Map.requestAndroidLocationPermissions = MapboxGL.requestAndroidLocationPermissions;
 
 Map.propTypes = {
