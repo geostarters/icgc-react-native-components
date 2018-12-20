@@ -157,7 +157,6 @@ export default class Map extends React.Component {
 
 	onRegionDidChange(view) {
 
-		console.log("Map::onRegionDidChange");
 		if (this.props.onRegionDidChange) {
 
 			this.props.onRegionDidChange(view);
@@ -166,12 +165,23 @@ export default class Map extends React.Component {
 
 	}
 
+	onPress(event) {
+
+		if (this.props.onPress) {
+
+			this.props.onPress(event);
+
+		}
+
+	}
+
 	async getVisibleBoundsInViewCoordinates() {
 
-		const bounds = await this.map.getVisibleBounds();
+		const bounds = await this.getVisibleBounds();
+		console.log("Map::getVisibleBoundsInViewCoordinates", bounds);
 		const viewCoords = [
-			this.getLngLatInViewCoordinates(bounds[0]),
-			this.getLngLatInViewCoordinates(bounds[1])
+			await this.getLngLatInViewCoordinates(bounds[0]),
+			await this.getLngLatInViewCoordinates(bounds[1])
 		];
 		const maxX = Math.max(viewCoords[0][0], viewCoords[1][0]);
 		const minX = Math.min(viewCoords[0][0], viewCoords[1][0]);
@@ -183,19 +193,21 @@ export default class Map extends React.Component {
 
 	async getVisibleBounds() {
 
-		return await this.map.getVisibleBounds();
+		const bounds = await this.map.getVisibleBounds();
+		console.log("Map::GetVisibleBounds", bounds);
+		return bounds;
 
 	}
 
-	queryRenderedFeaturesInRect(bbox, filter, layerIDs) {
+	async queryRenderedFeaturesInRect(bbox, filter, layerIDs) {
 
-		return this.map.queryRenderedFeaturesInRect(bbox, filter, layerIDs);
+		return await this.map.queryRenderedFeaturesInRect(bbox, filter, layerIDs);
 
 	}
 
-	getLngLatInViewCoordinates(point) {
+	async getLngLatInViewCoordinates(point) {
 
-		return this.map.getPointInView(point);
+		return await this.map.getPointInView(point);
 
 	}
 
@@ -216,6 +228,7 @@ export default class Map extends React.Component {
 				}}
 				style={sheet.matchParent}
 				onRegionDidChange={(view) => this.onRegionDidChange(view)}
+				onPress={(event) => this.onPress(event)}
 			>
 
 				{ this.props.mapData && this.renderMapData(this.props.mapData) }
@@ -240,5 +253,6 @@ Map.propTypes = {
 	mapData: PropTypes.object,
 	showAttribution: PropTypes.bool,
 	layerEvents: PropTypes.array, //Has to be Array<EventData> from flow-typed
-	onRegionDidChange: PropTypes.func
+	onRegionDidChange: PropTypes.func,
+	onPress: PropTypes.func
 };

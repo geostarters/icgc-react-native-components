@@ -182,10 +182,18 @@ var Map = function (_React$Component) {
 		key: "onRegionDidChange",
 		value: function onRegionDidChange(view) {
 
-			console.log("Map::onRegionDidChange");
 			if (this.props.onRegionDidChange) {
 
 				this.props.onRegionDidChange(view);
+			}
+		}
+	}, {
+		key: "onPress",
+		value: function onPress(event) {
+
+			if (this.props.onPress) {
+
+				this.props.onPress(event);
 			}
 		}
 	}, {
@@ -198,18 +206,30 @@ var Map = function (_React$Component) {
 						switch (_context.prev = _context.next) {
 							case 0:
 								_context.next = 2;
-								return this.map.getVisibleBounds();
+								return this.getVisibleBounds();
 
 							case 2:
 								bounds = _context.sent;
-								viewCoords = [this.getLngLatInViewCoordinates(bounds[0]), this.getLngLatInViewCoordinates(bounds[1])];
+
+								console.log("Map::getVisibleBoundsInViewCoordinates", bounds);
+								_context.next = 6;
+								return this.getLngLatInViewCoordinates(bounds[0]);
+
+							case 6:
+								_context.t0 = _context.sent;
+								_context.next = 9;
+								return this.getLngLatInViewCoordinates(bounds[1]);
+
+							case 9:
+								_context.t1 = _context.sent;
+								viewCoords = [_context.t0, _context.t1];
 								maxX = Math.max(viewCoords[0][0], viewCoords[1][0]);
 								minX = Math.min(viewCoords[0][0], viewCoords[1][0]);
 								maxY = Math.max(viewCoords[0][1], viewCoords[1][1]);
 								minY = Math.min(viewCoords[0][1], viewCoords[1][1]);
 								return _context.abrupt("return", [maxY, maxX, minY, minX]);
 
-							case 9:
+							case 16:
 							case "end":
 								return _context.stop();
 						}
@@ -227,6 +247,7 @@ var Map = function (_React$Component) {
 		key: "getVisibleBounds",
 		value: function () {
 			var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+				var bounds;
 				return _regeneratorRuntime.wrap(function _callee2$(_context2) {
 					while (1) {
 						switch (_context2.prev = _context2.next) {
@@ -235,9 +256,12 @@ var Map = function (_React$Component) {
 								return this.map.getVisibleBounds();
 
 							case 2:
-								return _context2.abrupt("return", _context2.sent);
+								bounds = _context2.sent;
 
-							case 3:
+								console.log("Map::GetVisibleBounds", bounds);
+								return _context2.abrupt("return", bounds);
+
+							case 5:
 							case "end":
 								return _context2.stop();
 						}
@@ -253,16 +277,60 @@ var Map = function (_React$Component) {
 		}()
 	}, {
 		key: "queryRenderedFeaturesInRect",
-		value: function queryRenderedFeaturesInRect(bbox, filter, layerIDs) {
+		value: function () {
+			var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3(bbox, filter, layerIDs) {
+				return _regeneratorRuntime.wrap(function _callee3$(_context3) {
+					while (1) {
+						switch (_context3.prev = _context3.next) {
+							case 0:
+								_context3.next = 2;
+								return this.map.queryRenderedFeaturesInRect(bbox, filter, layerIDs);
 
-			return this.map.queryRenderedFeaturesInRect(bbox, filter, layerIDs);
-		}
+							case 2:
+								return _context3.abrupt("return", _context3.sent);
+
+							case 3:
+							case "end":
+								return _context3.stop();
+						}
+					}
+				}, _callee3, this);
+			}));
+
+			function queryRenderedFeaturesInRect(_x, _x2, _x3) {
+				return _ref3.apply(this, arguments);
+			}
+
+			return queryRenderedFeaturesInRect;
+		}()
 	}, {
 		key: "getLngLatInViewCoordinates",
-		value: function getLngLatInViewCoordinates(point) {
+		value: function () {
+			var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4(point) {
+				return _regeneratorRuntime.wrap(function _callee4$(_context4) {
+					while (1) {
+						switch (_context4.prev = _context4.next) {
+							case 0:
+								_context4.next = 2;
+								return this.map.getPointInView(point);
 
-			return this.map.getPointInView(point);
-		}
+							case 2:
+								return _context4.abrupt("return", _context4.sent);
+
+							case 3:
+							case "end":
+								return _context4.stop();
+						}
+					}
+				}, _callee4, this);
+			}));
+
+			function getLngLatInViewCoordinates(_x4) {
+				return _ref4.apply(this, arguments);
+			}
+
+			return getLngLatInViewCoordinates;
+		}()
 	}, {
 		key: "render",
 		value: function render() {
@@ -275,13 +343,16 @@ var Map = function (_React$Component) {
 			return React.createElement(
 				MapboxGL.MapView,
 				Object.assign({}, mapOptions, {
-					ref: function ref(_ref3) {
+					ref: function ref(_ref5) {
 
-						_this4.map = _ref3;
+						_this4.map = _ref5;
 					},
 					style: sheet.matchParent,
 					onRegionDidChange: function onRegionDidChange(view) {
 						return _this4.onRegionDidChange(view);
+					},
+					onPress: function onPress(event) {
+						return _this4.onPress(event);
 					}
 				}),
 				this.props.mapData && this.renderMapData(this.props.mapData)
@@ -308,5 +379,6 @@ Map.propTypes = {
 	mapData: PropTypes.object,
 	showAttribution: PropTypes.bool,
 	layerEvents: PropTypes.array, //Has to be Array<EventData> from flow-typed
-	onRegionDidChange: PropTypes.func
+	onRegionDidChange: PropTypes.func,
+	onPress: PropTypes.func
 };
