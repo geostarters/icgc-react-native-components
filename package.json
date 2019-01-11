@@ -1,6 +1,9 @@
 {
-  "name": "icgc-react-native-components",
+  "name": "@geostarters/react-native-components",
   "version": "0.0.1",
+  "homepage": "https://github.com/geostarters/icgc-react-native-components",
+  "bugs": "https://github.com/geostarters/icgc-react-native-components/issues",
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
