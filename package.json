@@ -26,6 +26,8 @@
   "dependencies": {
     "@mapbox/react-native-mapbox-gl": "^6.1.1",
     "babel-cli": "^6.26.0",
-    "icgc-js-common": "git+https://github.com/geostarters/icgc-js-common.git"
+    "icgc-js-common": "git+https://github.com/geostarters/icgc-js-common.git",
+    "prop-types": "^15.6.2",
+    "react-native-popup-dialog": "^0.16.6"
   }
 }

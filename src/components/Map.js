@@ -106,8 +106,7 @@ export default class Map extends React.Component {
 				minZoomLevel: source.minzoom,
 				maxZoomLevel: source.maxzoom,
 				tileSize: source.tileSize,
-				tms: (source.scheme === CONSTANTS.SCHEME_TMS),
-				//attribution: this.props.showAttribution
+				tms: (source.scheme === CONSTANTS.SCHEME_TMS)
 			};
 			res = <MapboxGL.RasterSource  {...rasterProps}>{layers}</MapboxGL.RasterSource>;
 			break;
@@ -178,7 +177,6 @@ export default class Map extends React.Component {
 	async getVisibleBoundsInViewCoordinates() {
 
 		const bounds = await this.getVisibleBounds();
-		console.log("Map::getVisibleBoundsInViewCoordinates", bounds);
 		const viewCoords = [
 			await this.getLngLatInViewCoordinates(bounds[0]),
 			await this.getLngLatInViewCoordinates(bounds[1])
@@ -194,6 +192,12 @@ export default class Map extends React.Component {
 	async getVisibleBounds() {
 
 		return await this.map.getVisibleBounds();
+
+	}
+
+	async queryRenderedFeaturesAtPoint(bbox, filter, layerIDs) {
+
+		return await this.map.queryRenderedFeaturesAtPoint(bbox, filter, layerIDs);
 
 	}
 

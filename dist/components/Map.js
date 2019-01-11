@@ -123,7 +123,6 @@ var Map = function (_React$Component) {
 							maxZoomLevel: source.maxzoom,
 							tileSize: source.tileSize,
 							tms: source.scheme === CONSTANTS.SCHEME_TMS
-							//attribution: this.props.showAttribution
 						};
 						res = React.createElement(
 							MapboxGL.RasterSource,
@@ -210,17 +209,15 @@ var Map = function (_React$Component) {
 
 							case 2:
 								bounds = _context.sent;
-
-								console.log("Map::getVisibleBoundsInViewCoordinates", bounds);
-								_context.next = 6;
+								_context.next = 5;
 								return this.getLngLatInViewCoordinates(bounds[0]);
 
-							case 6:
+							case 5:
 								_context.t0 = _context.sent;
-								_context.next = 9;
+								_context.next = 8;
 								return this.getLngLatInViewCoordinates(bounds[1]);
 
-							case 9:
+							case 8:
 								_context.t1 = _context.sent;
 								viewCoords = [_context.t0, _context.t1];
 								maxX = Math.max(viewCoords[0][0], viewCoords[1][0]);
@@ -229,7 +226,7 @@ var Map = function (_React$Component) {
 								minY = Math.min(viewCoords[0][1], viewCoords[1][1]);
 								return _context.abrupt("return", [maxY, maxX, minY, minX]);
 
-							case 16:
+							case 15:
 							case "end":
 								return _context.stop();
 						}
@@ -272,7 +269,7 @@ var Map = function (_React$Component) {
 			return getVisibleBounds;
 		}()
 	}, {
-		key: "queryRenderedFeaturesInRect",
+		key: "queryRenderedFeaturesAtPoint",
 		value: function () {
 			var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3(bbox, filter, layerIDs) {
 				return _regeneratorRuntime.wrap(function _callee3$(_context3) {
@@ -280,7 +277,7 @@ var Map = function (_React$Component) {
 						switch (_context3.prev = _context3.next) {
 							case 0:
 								_context3.next = 2;
-								return this.map.queryRenderedFeaturesInRect(bbox, filter, layerIDs);
+								return this.map.queryRenderedFeaturesAtPoint(bbox, filter, layerIDs);
 
 							case 2:
 								return _context3.abrupt("return", _context3.sent);
@@ -293,22 +290,22 @@ var Map = function (_React$Component) {
 				}, _callee3, this);
 			}));
 
-			function queryRenderedFeaturesInRect(_x, _x2, _x3) {
+			function queryRenderedFeaturesAtPoint(_x, _x2, _x3) {
 				return _ref3.apply(this, arguments);
 			}
 
-			return queryRenderedFeaturesInRect;
+			return queryRenderedFeaturesAtPoint;
 		}()
 	}, {
-		key: "getLngLatInViewCoordinates",
+		key: "queryRenderedFeaturesInRect",
 		value: function () {
-			var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4(point) {
+			var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4(bbox, filter, layerIDs) {
 				return _regeneratorRuntime.wrap(function _callee4$(_context4) {
 					while (1) {
 						switch (_context4.prev = _context4.next) {
 							case 0:
 								_context4.next = 2;
-								return this.map.getPointInView(point);
+								return this.map.queryRenderedFeaturesInRect(bbox, filter, layerIDs);
 
 							case 2:
 								return _context4.abrupt("return", _context4.sent);
@@ -321,8 +318,36 @@ var Map = function (_React$Component) {
 				}, _callee4, this);
 			}));
 
-			function getLngLatInViewCoordinates(_x4) {
+			function queryRenderedFeaturesInRect(_x4, _x5, _x6) {
 				return _ref4.apply(this, arguments);
+			}
+
+			return queryRenderedFeaturesInRect;
+		}()
+	}, {
+		key: "getLngLatInViewCoordinates",
+		value: function () {
+			var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee5(point) {
+				return _regeneratorRuntime.wrap(function _callee5$(_context5) {
+					while (1) {
+						switch (_context5.prev = _context5.next) {
+							case 0:
+								_context5.next = 2;
+								return this.map.getPointInView(point);
+
+							case 2:
+								return _context5.abrupt("return", _context5.sent);
+
+							case 3:
+							case "end":
+								return _context5.stop();
+						}
+					}
+				}, _callee5, this);
+			}));
+
+			function getLngLatInViewCoordinates(_x7) {
+				return _ref5.apply(this, arguments);
 			}
 
 			return getLngLatInViewCoordinates;
@@ -339,9 +364,9 @@ var Map = function (_React$Component) {
 			return React.createElement(
 				MapboxGL.MapView,
 				Object.assign({}, mapOptions, {
-					ref: function ref(_ref5) {
+					ref: function ref(_ref6) {
 
-						_this4.map = _ref5;
+						_this4.map = _ref6;
 					},
 					style: sheet.matchParent,
 					onRegionDidChange: function onRegionDidChange(view) {
