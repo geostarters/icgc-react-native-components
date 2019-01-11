@@ -2,7 +2,7 @@
 
 import React from "react";
 import MapboxGL from "@mapbox/react-native-mapbox-gl";
-import { StyleURL } from "icgc-js-common";
+import { StyleURL } from "@geostarters/common";
 import PropTypes from "prop-types";
 
 import * as CONSTANTS from "../constants";
