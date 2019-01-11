@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "@geostarters",
+	"plugin:react/recommended"
+  ],
+  "plugins": [
+	  "flowtype"
+  ],
+  "parserOptions": {
+	  "sourceType": "module"
+	}
+}
