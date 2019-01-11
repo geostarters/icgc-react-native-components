@@ -1,9 +1,9 @@
-# icgc-react-components
+# icgc-react-native-components
 
-A lib of React Components
+A lib of React Native Components
 
 ## Installation
 
 ```
-npm install --save icgc-react-components
+npm install --save @geostarters/react-native-components
 ```
