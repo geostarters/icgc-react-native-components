@@ -13,3 +13,9 @@ A lib of React Native Components
 ```
 npm install --save @geostarters/react-native-components
 ```
+
+### Important
+
+As it is using the library [React Native Mapbox GL](https://github.com/mapbox/react-native-mapbox-gl) as a dependency, it is needed to follow the installation instructions from the following page: 
+
+[MapboxGLRN Installation Guides](https://github.com/mapbox/react-native-mapbox-gl/#installation-guides)
