@@ -49,7 +49,8 @@ var Popup = function (_React$Component) {
 					onTouchOutside: function onTouchOutside() {
 						return _this2.onTouchOutside();
 					},
-					dialogTitle: this.props.showTitle && React.createElement(DialogTitle, { title: this.props.titleText })
+					dialogTitle: this.props.showTitle && React.createElement(DialogTitle, { title: this.props.titleText }),
+					width: this.props.width
 				},
 				React.createElement(
 					DialogContent,
@@ -70,7 +71,8 @@ Popup.propTypes = {
 	showTitle: PropTypes.bool,
 	titleText: PropTypes.string,
 	closeDialogHandler: PropTypes.func,
-	children: PropTypes.node.isRequired
+	children: PropTypes.node.isRequired,
+	width: PropTypes.number
 
 };
 
@@ -78,7 +80,8 @@ Popup.defaultProps = {
 	isModal: false,
 	showTitle: true,
 	titleText: "",
-	isVisible: true
+	isVisible: true,
+	width: 0.8
 };
 
 export default Popup;

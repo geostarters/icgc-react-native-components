@@ -35,6 +35,7 @@ class Popup extends React.Component {
 					this.props.showTitle &&
 						<DialogTitle title={ this.props.titleText } />
 				}
+				width={this.props.width}
 			>
 				<DialogContent>
 					{ this.props.children }
@@ -53,7 +54,8 @@ Popup.propTypes = {
 	showTitle: PropTypes.bool,
 	titleText: PropTypes.string,
 	closeDialogHandler: PropTypes.func,
-	children: PropTypes.node.isRequired
+	children: PropTypes.node.isRequired,
+	width: PropTypes.number
 
 };
 
@@ -61,7 +63,8 @@ Popup.defaultProps = {
 	isModal: false,
 	showTitle: true,
 	titleText: "",
-	isVisible: true
+	isVisible: true,
+	width: 0.8
 };
 
 export default Popup;
