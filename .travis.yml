@@ -1,10 +1,37 @@
 language: node_js
 cache:
-   directories:
-     - node_modules
+  directories:
+  - node_modules
 node_js:
-  - 8
+- 8
+branches:
+  except:
+    - /^v?\d+\.\d+(\.\d+)?(-\S*)?$/
 before_script:
-  - npm install
+- npm install
 script:
-  - npm run lint
+- npm run lint
+before_install:
+  # Create a git tag of the new version to use
+  # If package.json major and minor versions match last tag, then increment last tag. Else use package.json major.minor.0.
+- "{ sed -nE 's/^[ \\t]*\"version\": \"([0-9]{1,}\\.[0-9]{1,}\\.)[0-9x]{1,}\",$/\\1/p' package.json; git describe --abbrev=0 | sed -E 's/^v([0-9]{1,}\\.[0-9]{1,}\\.)([0-9]{1,})$/\\1 \\2/g'; } | { tr \"\\n\" \" \"; sleep 3; } >> aux.txt"
+- "awk '{printf($1==$2?\"v\"$2$3+1:\"v\"$1\"0\")}' aux.txt | xargs -I {} git tag -a {} -m \"{}\"\n"
+- rm aux.txt
+  # Update package.json based on the git tag we just created
+- npm --no-git-tag-version version from-git
+deploy:
+- provider: npm
+  email: geostarters@gmail.com
+  skip_cleanup: true
+  api_key:
+    secure: YeDJ2rB1SFOR3fvxHApW+r8Pb0OpyHSH5wHHhxvjkKcH6nVFnPpC2eHD8jprQukMr4Ad9KqJBdy4lQBvNCBbcSjgnl0O098S1DRdsw8GJirzuQ3R1RDU4a4wSE7HVr/HC2xMY/6QeXDtcPWkCLq++ZmmvXYa0rp7U0Vw6N1zu71TgrR2WUxm7MX7geK856+JlmrnYoh5BNC0kd4p1KnTv2Vbf95SfbHvsQloBltFK/AD9pnKluBxq61cRuXLfb2tLj/jwhfIFO5oG1TLTvsohc4UMWKfgOtlfmhWutOLXQrd3RAqqaPcVwBhk40H+uGNcDctuM7BA0xJDdId2+SdaglRHGXja66M9qiiWPXiEILgiV7RrpyFHzvruul4bA5Z291vHFHkbaPR1cunYnDs4skTXWFqJXKrcSlwNXYx89VhHV7vgkQiIuGq7dqTqGt5+F2c/m+rlyLkyeru7NhNBhGH5PuPMNTAqnQjGpLbyzrgk4JqkHynTt8zWifdLdyntwyqRv4FxGnLwnTVWo5SgamUjKxvABHESeMzPTUx/RatfnNkM34gNm2iFSSUhNeTtlqmpNIr7OrO/19lgu8kNNooRo+iBUiB6cRTOuWhBcxp1+n+VeUTNYny2jSccWGH6YknMVcTg+vzbUXFkgx9RrZ17qbKlXmgFomD6hMTFL4=
+  on:
+    branch: master
+- provider: script
+  skip_cleanup: true
+  script: sh .travis/push.sh
+  on:
+    branch: master
+env:
+  global:
+    secure: qXb0zKPNGXxBEnuswsON9kZBVPuxaelLX1lH9qR9X8qPLMcl7DpfZZBzqgDdp4+WiPNYBdwzX/FFZxi1ma/PwBuzPk/2tE5mJ8r3t/hfQ9oVcipGKdkdeYmdoT2iA3qko4Am5SooSxIM++b67aRnVTvsqidjAQk6t1r4LFd743UTl57sdF3aEkYL3Uzz78DjuyZjGbT4jpMt3NMmckY5fRX0O0YbuWHqg5RkN4UI8lqceALbgv1fHXewjuIkC43IUoumoLZEweDHSUfmqF/GYQq5aQxUoIhQvUvrQGGfiNZCVUxQzLtqMBG8eCVDvOGmr52hA+Hgg2kVbtv7gBgxXCRkH+bTu1cZYxmNgKAS68LFWg23F7nI2d04/ozOgCJnjW1O78eFhVuORwsnCIQTKZ3mbfvQ6TG7KgT1EdGmGcDBNpDqt4vkYE8v610loN4/MVCwHtBAQThvrAWzaPgP3CI0wo9WmYPbpkInG3c5bwfpH7pfeuhpDgLZbPPIMuX3qufjfypNeMLUvSdRkw39xFSyLckp6Yv8tfH1TFcQtX7iPjLRvGNYo+yu/FeBH7JSgZbLLza0dbaeUQrMZTFv2Njo/7H4CgeELpjxCXBOf5Bsza9htoPuxKSshC3zIsGC4lmCrffTiaqRyqEFtjCocOk2PCWBVa5F/4/usBiRH9U=
