@@ -12,10 +12,18 @@ A lib of React Native Components
 
 ```
 npm install --save @geostarters/react-native-components
+
+npm install axios
+
+npm install @react-native-mapbox-gl/maps --save
 ```
 
 ### Important
 
-As it is using the library [React Native Mapbox GL](https://github.com/mapbox/react-native-mapbox-gl) as a dependency, it is needed to follow the installation instructions from the following page: 
 
-[MapboxGLRN Installation Guides](https://github.com/mapbox/react-native-mapbox-gl/#installation-guides)
+[React Native Mapbox GL](https://github.com/mapbox/react-native-mapbox-gl) is deprecated since 2019. In order to continue working with Mapbox, it is needed to install the following dependency: 
+
+
+[Mapbox Maps SDK for React Native](https://github.com/react-native-mapbox-gl/maps)
+
+
