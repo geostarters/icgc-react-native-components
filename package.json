@@ -32,6 +32,7 @@
     "@geostarters/common": "^0.0.5",
     "@geostarters/eslint-config": "^0.0.1",
     "@mapbox/react-native-mapbox-gl": "^6.1.1",
+    "axios": "^0.21.0",
     "babel-cli": "^6.26.0",
     "prop-types": "^15.6.2",
     "react-native-popup-dialog": "^0.16.6"
