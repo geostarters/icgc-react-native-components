@@ -29,7 +29,7 @@
     "preinstall": "npx npm-force-resolutions"
   },
   "dependencies": {
-    "@geostarters/common": "^0.0.5",
+    "@geostarters/common": "^0.4.3",
     "@geostarters/eslint-config": "^0.0.1",
     "@mapbox/react-native-mapbox-gl": "^6.1.1",
     "babel-cli": "^6.26.0",
