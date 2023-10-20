@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@geostarters/common": "^0.4.3",
-    "@geostarters/eslint-config": "^0.0.1",
+    "@geostarters/eslint-config": "^0.0.6",
     "@mapbox/react-native-mapbox-gl": "^6.1.1",
     "babel-cli": "^6.26.0",
     "prop-types": "^15.6.2",
